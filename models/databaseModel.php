@@ -17,3 +17,10 @@ function getDatabaseConnection() {
         die("Database connection failed: " . $e->getMessage());
     }
 }
+
+function getAllByTable($table) {
+    $pdo = getDatabaseConnection();
+    $stmt = $pdo->prepare("SELECT * FROM `$table`");
+    $stmt->execute();
+    return $stmt->fetchAll();
+}
